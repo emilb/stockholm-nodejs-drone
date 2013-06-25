@@ -71,6 +71,38 @@ angular.module('utils.socket', []).provider('socket', function() {
   return this;
 });
 
+angular.module('utils.wordClient', ['utils.socket']).service('wordClient', function(socket) {
+        this.helloMe = function() {
+            console.log('fd');
+        };
+
+        this.executeCommand = function(command) {
+            console.log("executing... ", command);
+
+            var splittedCmd = command.split(' ');
+            if (splittedCmd[0] === 'moveForward') {
+                console.log("moving!");
+                moveForward(splittedCmd[1])
+            }
+
+            if (splittedCmd[0] === 'rotate') {
+                console.log("rotating!");
+                rotate(splittedCmd[1]);
+            }
+        };
+
+        this.moveForward = function(distance) {
+
+
+        };
+
+        this.rotate = function(degrees) {
+
+        };
+
+        return this;
+    }
+);
 
 angular.module('utils.keyCommands', ["utils.socket"]).service('keyCommands', function(socket) {
 
@@ -117,6 +149,6 @@ angular.module('utils.keyCommands', ["utils.socket"]).service('keyCommands', fun
 
 
 
-angular.module('utils', ["utils.socket", "utils.keyCommands"])
+angular.module('utils', ["utils.socket", "utils.keyCommands", "utils.wordClient"])
 
 
